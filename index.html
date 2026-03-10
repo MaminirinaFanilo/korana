@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KORANA — Messagerie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     ÉCRAN AUTH
+══════════════════════════════════════ -->
+<div id="screen-auth" class="screen active">
+
+  <!-- GAUCHE héro animé -->
+  <div class="auth-left">
+    <div class="auth-left-content">
+      <div class="auth-brand">
+        <div class="auth-brand-icon">
+          <svg viewBox="0 0 40 40" fill="none" width="26" height="26">
+            <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
+              font-family="'Sora', sans-serif" font-weight="800" font-size="26"
+              fill="white" letter-spacing="-1">K</text>
+          </svg>
+        </div>
+        <span class="auth-brand-name">KORANA</span>
+      </div>
+      <h1 class="auth-hero-title">
+        Connectez-vous<br/>avec vos proches,<br/><em>où que vous soyez.</em>
+      </h1>
+      <div class="chat-preview">
+        <div class="cp-bubble cp-left cp-1">
+          <div class="cp-av">🦊</div>
+          <div class="cp-msg"><div class="cp-name">Andry</div><div class="cp-text">Tu es là ? J'ai quelque chose à te dire 👋</div></div>
+        </div>
+        <div class="cp-bubble cp-right cp-2">
+          <div class="cp-msg"><div class="cp-text cp-text-right">Oui ! Dis-moi tout 😄</div></div>
+          <div class="cp-av">🐬</div>
+        </div>
+        <div class="cp-bubble cp-left cp-3">
+          <div class="cp-av">🦄</div>
+          <div class="cp-msg"><div class="cp-name">Nirina</div><div class="cp-text">KORANA c'est vraiment top 🔥</div></div>
+        </div>
+        <div class="cp-bubble cp-right cp-4">
+          <div class="cp-msg"><div class="cp-text cp-text-right">Totalement d'accord ! 💯</div></div>
+          <div class="cp-av">🐸</div>
+        </div>
+        <div class="cp-bubble cp-left cp-5">
+          <div class="cp-av">🦁</div>
+          <div class="cp-msg"><div class="cp-name">Faly</div><div class="cp-text">Rejoignez #technologie !</div></div>
+        </div>
+      </div>
+      <div class="auth-stats">
+        <div class="auth-stat"><div class="as-num">∞</div><div class="as-lbl">Messages</div></div>
+        <div class="auth-stat-sep"></div>
+        <div class="auth-stat"><div class="as-num">24/7</div><div class="as-lbl">En ligne</div></div>
+        <div class="auth-stat-sep"></div>
+        <div class="auth-stat"><div class="as-num">100%</div><div class="as-lbl">Gratuit</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DROITE formulaires -->
+  <div class="auth-right">
+    <div class="auth-card">
+      <div id="auth-error" class="auth-error-box" style="display:none"></div>
+
+      <!-- ══ LOGIN ══ -->
+      <div id="form-login">
+        <h2 class="auth-form-title">Se connecter à KORANA</h2>
+        <p class="auth-form-sub">Bon retour parmi nous !</p>
+        <div class="auth-field">
+          <label class="auth-field-label">Nom d'utilisateur</label>
+          <input id="login-name" type="text" class="auth-input" placeholder="Votre pseudo" autocomplete="username"/>
+        </div>
+        <div class="auth-field">
+          <label class="auth-field-label">Mot de passe</label>
+          <div class="auth-input-wrap">
+            <input id="login-password" type="password" class="auth-input" placeholder="••••••••" autocomplete="current-password"/>
+            <button class="auth-eye-btn" type="button" onclick="togglePwd('login-password',this)" tabindex="-1">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+        <button id="btn-login" class="auth-btn-primary">Se connecter</button>
+        <div class="auth-divider"><span>ou</span></div>
+        <button class="auth-btn-secondary" onclick="switchAuthTab('register')">Créer un nouveau compte</button>
+        <p class="auth-switch-link">Pas encore de compte ? <a onclick="switchAuthTab('register')">S'inscrire →</a></p>
+      </div>
+
+      <!-- ══ REGISTER ══ -->
+      <div id="form-register" style="display:none">
+        <button class="auth-back-btn" onclick="switchAuthTab('login')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="15" height="15"><polyline points="15 18 9 12 15 6"/></svg>
+          Retour
+        </button>
+        <h2 class="auth-form-title">Premiers pas sur KORANA</h2>
+        <p class="auth-form-sub">C'est rapide et gratuit.</p>
+
+        <!-- Prénom + Nom -->
+        <div class="auth-row-2">
+          <div class="auth-field">
+            <label class="auth-field-label">Prénom</label>
+            <input id="reg-firstname" type="text" class="auth-input" placeholder="Andry" maxlength="30" autocomplete="given-name"/>
+          </div>
+          <div class="auth-field">
+            <label class="auth-field-label">Nom</label>
+            <input id="reg-lastname" type="text" class="auth-input" placeholder="Rakoto" maxlength="30" autocomplete="family-name"/>
+          </div>
+        </div>
+
+        <!-- Pseudo -->
+        <div class="auth-field">
+          <label class="auth-field-label">Nom d'utilisateur / Pseudo</label>
+          <input id="reg-name" type="text" class="auth-input" placeholder="ex : NomadLune42" maxlength="20" autocomplete="off"/>
+          <span id="reg-name-hint" class="field-hint"></span>
+        </div>
+
+        <!-- Date de naissance -->
+        <div class="auth-field">
+          <label class="auth-field-label">Date de naissance</label>
+          <div class="auth-row-3">
+            <select id="reg-bday-day" class="auth-select"><option value="">Jour</option></select>
+            <select id="reg-bday-month" class="auth-select">
+              <option value="">Mois</option>
+              <option value="01">Janvier</option><option value="02">Février</option>
+              <option value="03">Mars</option><option value="04">Avril</option>
+              <option value="05">Mai</option><option value="06">Juin</option>
+              <option value="07">Juillet</option><option value="08">Août</option>
+              <option value="09">Septembre</option><option value="10">Octobre</option>
+              <option value="11">Novembre</option><option value="12">Décembre</option>
+            </select>
+            <select id="reg-bday-year" class="auth-select"><option value="">Année</option></select>
+          </div>
+        </div>
+
+        <!-- Genre -->
+        <div class="auth-field">
+          <label class="auth-field-label">Genre</label>
+          <select id="reg-gender" class="auth-select auth-select-full">
+            <option value="">Sélectionnez votre genre</option>
+            <option value="Masculin">Masculin</option>
+            <option value="Féminin">Féminin</option>
+            <option value="Autre">Autre / Préfère ne pas préciser</option>
+          </select>
+        </div>
+
+        <!-- Contact -->
+        <div class="auth-field">
+          <label class="auth-field-label">Numéro de mobile ou adresse e-mail</label>
+          <input id="reg-contact" type="text" class="auth-input" placeholder="+261 34 00 000 00 ou email@exemple.com" autocomplete="email"/>
+        </div>
+
+        <!-- Mot de passe -->
+        <div class="auth-field">
+          <label class="auth-field-label">Mot de passe <span class="auth-field-hint-inline">(min. 6 caractères)</span></label>
+          <div class="auth-input-wrap">
+            <input id="reg-password" type="password" class="auth-input" placeholder="••••••••" autocomplete="new-password"/>
+            <button class="auth-eye-btn" type="button" onclick="togglePwd('reg-password',this)" tabindex="-1">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="auth-field">
+          <label class="auth-field-label">Confirmer le mot de passe</label>
+          <div class="auth-input-wrap">
+            <input id="reg-password2" type="password" class="auth-input" placeholder="••••••••" autocomplete="new-password"/>
+            <button class="auth-eye-btn" type="button" onclick="togglePwd('reg-password2',this)" tabindex="-1">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Avatar -->
+        <div class="auth-field">
+          <label class="auth-field-label">Choisissez un avatar</label>
+          <div class="avatars" id="reg-avatar-list"></div>
+        </div>
+
+        <p class="auth-legal">En cliquant sur <strong>S'inscrire</strong>, vous acceptez nos <a href="#">Conditions d'utilisation</a>.</p>
+        <button id="btn-register" class="auth-btn-primary">S'inscrire</button>
+        <p class="auth-switch-link">Déjà un compte ? <a onclick="switchAuthTab('login')">Se connecter →</a></p>
+      </div>
+
+      <div class="auth-footer-line">KORANA © 2025 · Messagerie sécurisée</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     ÉCRAN CHAT
+══════════════════════════════════════ -->
+<div id="screen-chat" class="screen">
+
+  <header id="app-header">
+    <div class="header-logo">
+      <div class="hlogo-icon">
+        <svg viewBox="0 0 32 32" fill="none" width="20" height="20">
+          <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
+            font-family="'Sora', sans-serif" font-weight="800" font-size="22"
+            fill="#4f6ef7" letter-spacing="-1">K</text>
+        </svg>
+      </div>
+      <span class="hlogo-text">KORANA</span>
+    </div>
+    <div class="header-right">
+      <button class="header-icon-btn" id="btn-export-pdf" title="Exporter PDF">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM12 17l-4-4h3v-4h2v4h3l-4 4z"/></svg>
+      </button>
+      <button class="header-icon-btn" id="btn-toggle-sound" title="Activer / couper le son">
+        <svg id="sound-icon-on" viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+        <svg id="sound-icon-off" viewBox="0 0 24 24" fill="currentColor" width="17" height="17" style="display:none"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+      </button>
+      <div class="header-user-pill" id="header-user-wrap" title="Changer de statut">
+        <span id="header-status-dot" class="h-status-dot">🟢</span>
+        <span class="h-name" id="header-username">—</span>
+        <div class="h-avatar" id="header-avatar">?</div>
+        <svg viewBox="0 0 24 24" fill="currentColor" width="11" height="11" style="opacity:.45"><path d="M7 10l5 5 5-5z"/></svg>
+      </div>
+      <button id="btn-logout" class="header-icon-btn header-logout-btn" title="Se déconnecter">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5-5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div id="app-body">
+
+    <!-- GAUCHE -->
+    <aside id="left-panel">
+      <div class="left-search-wrap" style="position:relative;">
+        <div class="left-search-box" id="global-search-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input id="conv-search-input" type="text" placeholder="Rechercher messages, utilisateurs…" autocomplete="off"/>
+          <button id="global-search-clear" style="display:none;background:none;border:none;cursor:pointer;color:var(--text3);padding:2px;font-size:14px;line-height:1;flex-shrink:0;" title="Effacer">✕</button>
+        </div>
+        <!-- Dropdown résultats -->
+        <div id="global-search-dropdown" class="gsearch-dropdown" style="display:none;">
+          <div id="gsearch-results"></div>
+        </div>
+      </div>
+      <div class="left-scroll">
+        <div class="left-section-header" onclick="toggleLeftSection(this)">
+          <span>Groupes</span><span class="left-section-toggle open">▾</span>
+        </div>
+        <div class="left-section-body">
+          <div class="room-nav-item lroom active" data-room="general">
+            <div class="lroom-icon" style="background:#dbeafe;color:#2563eb">💬</div>
+            <span class="lroom-name"># général</span>
+            <span class="group-badge" id="badge-general" style="display:none"></span>
+          </div>
+          <div class="room-nav-item lroom" data-room="random">
+            <div class="lroom-icon" style="background:#fef3c7;color:#d97706">🎲</div>
+            <span class="lroom-name"># aléatoire</span>
+            <span class="group-badge" id="badge-random" style="display:none"></span>
+          </div>
+          <div class="room-nav-item lroom" data-room="tech">
+            <div class="lroom-icon" style="background:#dcfce7;color:#16a34a">💻</div>
+            <span class="lroom-name"># technologie</span>
+            <span class="group-badge" id="badge-tech" style="display:none"></span>
+          </div>
+        </div>
+        <div class="left-section-header" onclick="toggleLeftSection(this)" style="margin-top:6px">
+          <span>Messages privés</span><span class="left-section-toggle open">▾</span>
+        </div>
+        <div class="left-section-body" id="users-conv-list"></div>
+      </div>
+    </aside>
+
+    <!-- CENTRE -->
+    <main id="chat-main">
+      <div id="chat-header">
+        <div class="ch-left">
+          <div class="ch-avatar-wrap">
+            <div class="ch-avatar" id="chat-ha-main">💬</div>
+          </div>
+          <div class="ch-info">
+            <div class="ch-name" id="current-room-name">général</div>
+            <div class="ch-desc" id="current-room-desc">Canal de discussion principal</div>
+          </div>
+        </div>
+        <div class="ch-actions">
+          <button class="ch-btn" title="Appel vocal" onclick="alert('Bientôt disponible')">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.32.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.01L6.6 10.8z"/></svg>
+          </button>
+          <button class="ch-btn" id="btn-toggle-info" title="Infos">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="messages-container">
+        <div id="messages-list"></div>
+      </div>
+
+      <div id="typing-indicator" class="hidden">
+        <div class="typing-dots"><span></span><span></span><span></span></div>
+        <em id="typing-text"></em>
+      </div>
+
+      <div id="reply-bar" style="display:none">
+        <div class="reply-bar-content">
+          <span class="reply-icon">↩</span>
+          <div class="reply-bar-text">
+            <span class="reply-bar-author" id="reply-author"></span>
+            <span class="reply-bar-preview" id="reply-preview"></span>
+          </div>
+        </div>
+        <button id="btn-cancel-reply" class="reply-cancel-btn">✕</button>
+      </div>
+
+      <div id="input-area">
+        <input type="file" id="img-input" accept="image/*" style="display:none"/>
+        <button class="input-action-btn" id="btn-image" title="Image">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="19" height="19"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+        </button>
+        <button class="input-action-btn" id="btn-emoji" title="Emoji">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/></svg>
+        </button>
+        <div id="emoji-panel" class="emoji-panel hidden"></div>
+        <textarea id="msg-input" placeholder="Tapez un message… (Entrée pour envoyer)" rows="1" maxlength="500"></textarea>
+        <span id="msg-len" style="display:none;position:absolute;right:66px;bottom:22px;font-size:10px;color:var(--text3)">0/500</span>
+        <button id="btn-send" class="btn-send">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </main>
+
+    <!-- DROITE — Panneau Détails restructuré -->
+    <aside id="right-panel">
+      <div class="rp-header">
+        <span class="rp-header-title">Détails</span>
+        <button class="rp-close-btn" id="btn-toggle-info2">✕</button>
+      </div>
+
+      <!-- Avatar + nom + sous-titre + réseaux -->
+      <div class="rp-profile-card">
+        <div class="profile-avatar" id="rp-avatar">💬</div>
+        <div class="profile-name" id="rp-name">général</div>
+        <div class="profile-sub"  id="rp-sub">Canal de discussion principal</div>
+        <div class="profile-socials">
+          <button class="social-btn" title="Facebook">𝓯</button>
+          <button class="social-btn" title="LinkedIn">in</button>
+          <button class="social-btn" title="YouTube">▶</button>
+        </div>
+      </div>
+
+      <!-- Onglets -->
+      <div class="rp-tabs">
+        <button class="rp-tab active" onclick="switchRpTab('about',this)">À propos</button>
+        <button class="rp-tab" onclick="switchRpTab('album',this)">Album</button>
+        <button class="rp-tab" onclick="switchRpTab('other',this)">Autres</button>
+      </div>
+
+      <!-- Tab : À propos -->
+      <div id="rp-tab-about" class="rp-tab-content active">
+        <div class="rp-about-list" id="rp-about-list">
+          <!-- rempli dynamiquement -->
+        </div>
+      </div>
+
+      <!-- Tab : Album -->
+      <div id="rp-tab-album" class="rp-tab-content">
+        <div class="rp-album-grid" id="rp-album-grid">
+          <div class="rp-album-empty">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 15l4-4 4 4 4-5 6 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>
+            <span>Aucune photo partagée</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab : Autres (membres) -->
+      <div id="rp-tab-other" class="rp-tab-content">
+        <div class="rp-other-section">
+          <div class="rp-other-title">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+            Membres actifs
+            <span class="online-count-badge" id="rp-online-badge">0</span>
+          </div>
+          <div class="online-list" id="rp-online-list"></div>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;align-items:center;justify-content:center;">
+  <img id="lightbox-img" src="" style="max-width:90vw;max-height:90vh;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.6)"/>
+  <button onclick="closeLightbox()" style="position:absolute;top:20px;right:24px;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:22px;width:42px;height:42px;border-radius:50%;cursor:pointer;backdrop-filter:blur(8px)">✕</button>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script>
+function togglePwd(id, btn) {
+  const inp = document.getElementById(id);
+  const isPass = inp.type === 'password';
+  inp.type = isPass ? 'text' : 'password';
+  btn.innerHTML = isPass
+    ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`
+    : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
+}
+
+// Peupler les sélecteurs de date
+(function() {
+  const dayEl = document.getElementById('reg-bday-day');
+  const yearEl = document.getElementById('reg-bday-year');
+  if (dayEl) {
+    for (let d = 1; d <= 31; d++) {
+      const o = document.createElement('option');
+      o.value = String(d).padStart(2,'0'); o.textContent = d;
+      dayEl.appendChild(o);
+    }
+  }
+  if (yearEl) {
+    const y = new Date().getFullYear();
+    for (let yr = y; yr >= y - 100; yr--) {
+      const o = document.createElement('option');
+      o.value = yr; o.textContent = yr;
+      yearEl.appendChild(o);
+    }
+  }
+})();
+
+function switchRpTab(tab, btn) {
+  document.querySelectorAll('.rp-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.rp-tab-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('rp-tab-' + tab).classList.add('active');
+}
+</script>
+<script src="script.js"></script>
+</body>
+</html>
